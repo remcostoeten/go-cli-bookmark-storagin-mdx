@@ -1,0 +1,52 @@
+{
+  "designs": [
+    {
+      "url": "https://google.nl",
+      "title": "google",
+      "notes": "some note",
+      "tags": [
+        "a",
+        "note",
+        "is",
+        "here"
+      ],
+      "createdAt": "2024-11-28T15:28:45.792709737+01:00",
+      "type": "webite",
+      "category": "saas",
+      "colors": "dark",
+      "hasRepo": false
+    }
+  ],
+  "code": [
+    {
+      "url": "https://stackoverflow.com",
+      "title": "some title",
+      "notes": "notes",
+      "tags": [
+        "a",
+        "code",
+        "asnwer",
+        "jqeury"
+      ],
+      "createdAt": "2024-11-28T15:32:19.871382129+01:00",
+      "language": "jayjayquery",
+      "solution": ".",
+      "worksInVersion": "."
+    }
+  ],
+  "articles": null,
+  "generic": [
+    {
+      "url": "haha",
+      "title": "ga",
+      "notes": "gag",
+      "tags": [
+        "2",
+        "2",
+        "3"
+      ],
+      "createdAt": "2024-11-28T15:31:14.951684096+01:00",
+      "category": "soemcategory"
+    }
+  ]
+}
