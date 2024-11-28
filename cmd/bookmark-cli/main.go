@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -92,7 +93,8 @@ func showMainMenu() {
 	fmt.Println("2. 👀 View Bookmarks")
 	fmt.Println("3. 🔍 Search")
 	fmt.Println("4. 📤 Export to Markdown")
-	fmt.Println("5. ❌ Exit" + Reset)
+	fmt.Println("5. 🗑️  Remove Bookmark")
+	fmt.Println("6. ❌ Exit" + Reset)
 }
 
 func addBookmark(manager *BookmarkManager) {
@@ -418,6 +420,82 @@ func writeCommonMarkdown(md *strings.Builder, b BaseBookmark) {
 	md.WriteString(fmt.Sprintf("- **Added:** %s\n\n", b.CreatedAt.Format("2006-01-02 15:04:05")))
 }
 
+func removeBookmark(manager *BookmarkManager) {
+	clearScreen()
+	fmt.Println(Bold + Red + "\n=== Remove Bookmark ===" + Reset)
+	fmt.Println(Cyan + "\n1. 🎨 Design Inspiration")
+	fmt.Println("2. 💻 Code/Stack Overflow")
+	fmt.Println("3. 📚 Article/Blog")
+	fmt.Println("4. 🔖 Generic Bookmark" + Reset)
+
+	choice := readLine("\nChoice: ")
+	
+	var count int
+	switch choice {
+	case "1":
+		for i, b := range manager.Designs {
+			fmt.Printf("\n%d. %s%s%s\n", i+1, Bold+Blue, b.Title, Reset)
+			fmt.Printf("   URL: %s\n", b.URL)
+		}
+		count = len(manager.Designs)
+	case "2":
+		for i, b := range manager.Code {
+			fmt.Printf("\n%d. %s%s%s\n", i+1, Bold+Magenta, b.Title, Reset)
+			fmt.Printf("   URL: %s\n", b.URL)
+		}
+		count = len(manager.Code)
+	case "3":
+		for i, b := range manager.Articles {
+			fmt.Printf("\n%d. %s%s%s\n", i+1, Bold+Cyan, b.Title, Reset)
+			fmt.Printf("   URL: %s\n", b.URL)
+		}
+		count = len(manager.Articles)
+	case "4":
+		for i, b := range manager.Generic {
+			fmt.Printf("\n%d. %s%s%s\n", i+1, Bold+Green, b.Title, Reset)
+			fmt.Printf("   URL: %s\n", b.URL)
+		}
+		count = len(manager.Generic)
+	}
+
+	if count == 0 {
+		fmt.Println(Red + "\nNo bookmarks found in this category" + Reset)
+		fmt.Print(Cyan + "\nPress Enter to continue..." + Reset)
+		bufio.NewReader(os.Stdin).ReadBytes('\n')
+		return
+	}
+
+	indexStr := readLine("\nEnter the number of the bookmark to remove (or 0 to cancel): ")
+	index, err := strconv.Atoi(indexStr)
+	if err != nil || index < 0 || index > count {
+		fmt.Println(Red + "\nInvalid selection" + Reset)
+		fmt.Print(Cyan + "\nPress Enter to continue..." + Reset)
+		bufio.NewReader(os.Stdin).ReadBytes('\n')
+		return
+	}
+
+	if index == 0 {
+		return
+	}
+
+	index-- // Convert to 0-based index
+	switch choice {
+	case "1":
+		manager.Designs = append(manager.Designs[:index], manager.Designs[index+1:]...)
+	case "2":
+		manager.Code = append(manager.Code[:index], manager.Code[index+1:]...)
+	case "3":
+		manager.Articles = append(manager.Articles[:index], manager.Articles[index+1:]...)
+	case "4":
+		manager.Generic = append(manager.Generic[:index], manager.Generic[index+1:]...)
+	}
+
+	saveBookmarks(*manager)
+	fmt.Println(Green + "\n✅ Bookmark removed successfully!" + Reset)
+	fmt.Print(Cyan + "\nPress Enter to continue..." + Reset)
+	bufio.NewReader(os.Stdin).ReadBytes('\n')
+}
+
 func main() {
 	manager := loadBookmarks()
 
@@ -435,6 +513,8 @@ func main() {
 		case "4":
 			exportToMarkdown(manager)
 		case "5":
+			removeBookmark(&manager)
+		case "6":
 			fmt.Println(Green + "\nGoodbye! 👋" + Reset)
 			return
 		default:

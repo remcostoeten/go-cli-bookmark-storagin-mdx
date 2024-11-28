@@ -1,18 +1,28 @@
 {
   "designs": [
     {
-      "url": "https://google.nl",
-      "title": "google",
-      "notes": "some note",
+      "url": "",
+      "title": "",
+      "createdAt": "2024-11-28T16:03:26.521773686+01:00",
+      "type": "3",
+      "category": "3",
+      "colors": "",
+      "hasRepo": false
+    },
+    {
+      "url": "https://dribbble.com/shots/22776080-Okashi-smart-contract-playground",
+      "title": "Code/snippet dashboard",
+      "notes": "Some sort of snoippe storage/runner",
       "tags": [
-        "a",
-        "note",
-        "is",
-        "here"
+        "code",
+        "monofont",
+        "dark",
+        "snippet",
+        "multi-layout"
       ],
-      "createdAt": "2024-11-28T15:28:45.792709737+01:00",
-      "type": "webite",
-      "category": "saas",
+      "createdAt": "2024-11-28T21:40:18.886766666+01:00",
+      "type": "app",
+      "category": "dashboard",
       "colors": "dark",
       "hasRepo": false
     }

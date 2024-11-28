@@ -10,6 +10,20 @@
 - **Tags:** a, note, is, here
 - **Added:** 2024-11-28 15:28:45
 
+### []()
+- **Type:** 3
+- **Category:** 3
+- **Color Scheme:** 
+- **Added:** 2024-11-28 16:03:26
+
+### [Code/snippet dashboard](https://dribbble.com/shots/22776080-Okashi-smart-contract-playground)
+- **Type:** app
+- **Category:** dashboard
+- **Color Scheme:** dark
+- **Notes:** Some sort of snoippe storage/runner
+- **Tags:** code, monofont, dark, snippet, multi-layout
+- **Added:** 2024-11-28 21:40:18
+
 
 ## 💻 Code Solutions
 
